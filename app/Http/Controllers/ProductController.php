@@ -41,7 +41,6 @@ class ProductController extends Controller
         if($request->hasFile('image')) {
             $file = $request->file('image');
             $fileName = $file->hashName();
-
             $file->move('image', $fileName);
             $request->image = $fileName;
         }
@@ -73,9 +72,10 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit($id)
     {
-        //
+        $product = Product::find($id)->first();
+        return view('products.edit', compact('product'));
     }
 
     /**
