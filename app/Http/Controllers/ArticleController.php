@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreArticleRequest;
 use App\Http\Requests\UpdateArticleRequest;
@@ -63,7 +64,7 @@ class ArticleController extends Controller
     public function show($slug)
     {
         $article = Article::query()->where("slug", $slug)->first();
-        return view('articles.post', ['article' => $article]);
+        return view('articles.post', compact('article'));
     }
 
     /**
@@ -72,9 +73,10 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function edit(Article $article)
+    public function edit($id)
     {
-        //
+        $article = Article::query()->find($id);
+        return view('articles.edit', compact('article'));
     }
 
     /**
@@ -84,9 +86,31 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateArticleRequest $request, Article $article)
+    public function update(Request $request, $id)
     {
-        //
+        $article = Article::query()->find($id);
+        $payload = [
+            'title' => $request->title,
+            'slug' => $request->slug,
+            'content' => $request->content
+        ];
+        if ($request->hasFile('image')) {
+            $oldImage = public_path('images/posts/' . $article->image);
+            if (file_exists($oldImage)) {
+                unlink($oldImage);
+            }
+
+            $file = $request->file('image');
+            $fileName = $file->hashName();
+            $file->move('images/posts', $fileName);
+            $request->image = $fileName;
+
+            $payload = Arr::prepend($payload, $request->image, 'image');
+            $article->update($payload);
+        } else {
+            $article->update($payload);
+        }
+        return redirect()->back();
     }
 
     /**

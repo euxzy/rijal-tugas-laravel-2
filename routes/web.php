@@ -40,5 +40,7 @@ Route::prefix('/posts')
         Route::get('/', 'index')->name('list');
         Route::get('/create', 'create')->name('create');
         Route::get('/{slug}', 'show')->name('show');
+        Route::get('/edit/{id}', 'edit')->name('edit');
         Route::post('/store', 'store')->name('store');
+        Route::put('/update/{id}', 'update')->name('update');
     });
