@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ArticleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +19,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/product', [ProductController::class, 'create']);
 
 Route::prefix('/product')
     ->name('product.')
@@ -30,4 +30,14 @@ Route::prefix('/product')
         Route::post('/store', 'store')->name('store');
         Route::put('/update/{id}', 'update')->name('update');
         Route::get('/delete/{id}', 'destroy')->name('delete');
+    });
+
+
+Route::prefix('/posts')
+    ->name('post.')
+    ->controller(ArticleController::class)
+    ->group(function () {
+        Route::get('/', 'index')->name('list');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/store', 'store')->name('store');
     });
