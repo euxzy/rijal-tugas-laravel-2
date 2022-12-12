@@ -119,8 +119,14 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Article $article)
+    public function destroy($id)
     {
-        //
+        $article = Article::query()->find($id);
+        $oldImage = public_path('images/posts/' . $article->image);
+        if (file_exists($oldImage)) {
+            unlink($oldImage);
+        }
+        $article->delete();
+        return redirect()->back();
     }
 }

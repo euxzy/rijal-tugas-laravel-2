@@ -43,4 +43,5 @@ Route::prefix('/posts')
         Route::get('/edit/{id}', 'edit')->name('edit');
         Route::post('/store', 'store')->name('store');
         Route::put('/update/{id}', 'update')->name('update');
+        Route::get('/delete/{id}', 'destroy')->name('delete');
     });
