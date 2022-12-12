@@ -3,7 +3,8 @@
 @section('content')
   <section class="max-w-[700px] mx-auto">
     <a href="{{ route('product.list') }}" class="mt-12 inline-block mb-4 bg-green-600 text-white px-4 py-2 rounded-lg">Kembali Ke Daftar Produk</a>
-    <form action="" method="post" enctype="multipart/form-data">
+    <form action="{{ route('product.update', $product->id) }}" method="post" enctype="multipart/form-data">
+      @method('put')
       @csrf
       <div class="flex flex-col gap-5 px-5 py-6 rounded-xl border border-gray-400">
         <h1 class="w-max mx-auto text-4xl font-bold mb-2 text-gray-700">Update Produk</h1>

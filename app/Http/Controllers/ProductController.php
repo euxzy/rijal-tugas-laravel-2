@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
@@ -74,7 +75,7 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $product = Product::find($id)->first();
+        $product = Product::find($id);
         return view('products.edit', compact('product'));
     }
 
@@ -85,9 +86,33 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateProductRequest $request, Product $product)
+    public function update(Request $request, $id)
     {
-        //
+        $product = Product::query()->find($id);
+
+        $payload = [
+                "name" => $request->input("name"),
+                "price" => $request->input("price"),
+                "stock" => $request->input("stock"),
+                "description" => $request->input("description")
+        ];
+        if ($request->hasFile('image')) {
+            $oldImage = str_replace($request->getSchemeAndHttpHost, '', $product->image);
+            if (file_exists(public_path('image/' . $oldImage))) {
+                unlink(public_path('image/' . $oldImage));
+            }
+
+            $file = $request->file('image');
+            $fileName = $file->hashName();
+            $file->move('image', $fileName);
+            $request->image = $fileName;
+
+            $payload = Arr::prepend($payload, $request->image, 'image');
+            $product->update($payload);
+        } else {
+             $product->update($payload);
+        }
+        return redirect()->back();
     }
 
     /**
