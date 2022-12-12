@@ -97,7 +97,7 @@ class ProductController extends Controller
                 "description" => $request->input("description")
         ];
         if ($request->hasFile('image')) {
-            $oldImage = str_replace($request->getSchemeAndHttpHost, '', $product->image);
+            $oldImage = $product->image;
             if (file_exists(public_path('image/' . $oldImage))) {
                 unlink(public_path('image/' . $oldImage));
             }
@@ -121,8 +121,14 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy($id)
     {
-        //
+        $product = Product::query()->find($id);
+        $oldImage = $product->image;
+        if (file_exists(public_path('image/' . $oldImage))) {
+            unlink(public_path('image/' . $oldImage));
+        }
+        $product->delete();
+        return redirect()->back();
     }
 }

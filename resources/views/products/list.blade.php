@@ -22,6 +22,10 @@
         <div>
           <img src="{{ asset('image/'. $product->image) }}" alt="">
         </div>
+        <div>
+          <a href="{{ route('product.edit', $product->id) }}">Edit</a>
+          <a href="{{ route('product.delete', $product->id) }}">Hapus</a>
+        </div>
       </div>
     @endforeach
   </section>
