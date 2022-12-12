@@ -1,5 +1,10 @@
 @extends('templates.base')
 @section('title', 'Semua Post')
 @section('content')
-  <h1>Hello</h1>
+  <section>
+    @foreach ($articles as $article)
+      <h1>{{ $article->title }}</h1>
+      <a href="{{ route('post.show', $article->slug) }}">Detail</a>
+    @endforeach
+  </section>
 @endsection

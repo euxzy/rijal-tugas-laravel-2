@@ -39,5 +39,6 @@ Route::prefix('/posts')
     ->group(function () {
         Route::get('/', 'index')->name('list');
         Route::get('/create', 'create')->name('create');
+        Route::get('/{slug}', 'show')->name('show');
         Route::post('/store', 'store')->name('store');
     });
