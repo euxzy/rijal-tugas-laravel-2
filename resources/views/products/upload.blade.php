@@ -1,4 +1,4 @@
-@extends('templates.product')
+@extends('templates.base')
 @section('title', 'Tambah Produk')
 @section('content')
   <section class="max-w-[700px] mx-auto">
