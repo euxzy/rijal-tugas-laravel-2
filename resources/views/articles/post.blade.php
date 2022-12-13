@@ -11,9 +11,9 @@
     <p class="text-gray-900">{!! $article->content !!}</p>
 
     <div class="mt-20 flex gap-5">
-      <a href="{{ route('post.list') }}" class="inline-block bg-green-600 text-white px-4 py-2 rounded-lg font-bold">Lihat post lain</a>
-      <a href="{{ route('post.edit', $article->id) }}" class="inline-block bg-blue-400 text-white px-4 py-2 rounded-lg font-bold">Edit Post</a>
-      <a href="{{ route('post.delete', $article->id) }}" class="inline-block bg-red-400 text-white px-4 py-2 rounded-lg font-bold">Hapus Post</a>
+      <a href="{{ route('post.list') }}" class="inline-block bg-green-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-opacity-80 hover:-translate-y-1 transition-all duration-300">Lihat post lain</a>
+      <a href="{{ route('post.edit', $article->id) }}" class="inline-block bg-blue-500 text-white px-4 py-2 rounded-lg font-bold hover:bg-opacity-80 hover:-translate-y-1 transition-all duration-300">Edit Post</a>
+      <a href="{{ route('post.delete', $article->id) }}" class="inline-block bg-red-500 text-white px-4 py-2 rounded-lg font-bold hover:bg-opacity-80 hover:-translate-y-1 transition-all duration-300">Hapus Post</a>
     </div>
   </section>
 @endsection
