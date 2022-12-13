@@ -16,8 +16,8 @@
       <input type="file" name="image" id="image" accept="image/*" class="w-full mb-8 bg-white cursor-pointer file:cursor-pointer rounded-lg file:hover:bg-green-500 file:bg-green-700 file:px-3 file:py-2 file:border-none file:text-green-100 file:mr-4 text-gray-500 font-medium file:transition-all file:duration-300" required>
       <trix-editor input="content" class="mb-8 w-full min-h-[300px] bg-white cursor-pointer file:cursor-pointer rounded-lg file:hover:bg-green-500 file:bg-green-700 file:px-3 file:py-2 file:border-none file:text-green-100 file:mr-4 text-gray-500 font-medium file:transition-all file:duration-300"></trix-editor>
       <div class="flex gap-5">
-        <button type="submit" class="px-3 py-2 rounded-lg text-white bg-green-600">Tambah Post</button>
-        <a href="{{ route('post.list') }}" class="inline-block bg-blue-400 text-white px-4 py-2 rounded-lg font-bold">Lihar Semua Post</a>
+        <button type="submit" class="px-3 py-2 rounded-lg text-white bg-green-600  hover:bg-opacity-80 hover:-translate-y-1 transition-all duration-300">Tambah Post</button>
+        <a href="{{ route('post.list') }}" class="inline-block bg-blue-500 text-white px-4 py-2 rounded-lg font-bold hover:bg-opacity-80 hover:-translate-y-1 transition-all duration-300">Lihat Semua Post</a>
       </div>
     </form>
   </section>
