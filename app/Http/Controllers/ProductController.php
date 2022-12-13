@@ -20,7 +20,7 @@ class ProductController extends Controller
         $products = Product::query()->get();
         return view("products.list", ["products" => $products]);
     }
-    
+
     /**
      * Show the form for creating a new resource.
      *
@@ -39,10 +39,10 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        if($request->hasFile('image')) {
+        if ($request->hasFile('image')) {
             $file = $request->file('image');
             $fileName = $file->hashName();
-            $file->move('image', $fileName);
+            $file->move('images/products', $fileName);
             $request->image = $fileName;
         }
         $payload = [
@@ -91,15 +91,15 @@ class ProductController extends Controller
         $product = Product::query()->find($id);
 
         $payload = [
-                "name" => $request->input("name"),
-                "price" => $request->input("price"),
-                "stock" => $request->input("stock"),
-                "description" => $request->input("description")
+            "name" => $request->input("name"),
+            "price" => $request->input("price"),
+            "stock" => $request->input("stock"),
+            "description" => $request->input("description")
         ];
         if ($request->hasFile('image')) {
             $oldImage = $product->image;
-            if (file_exists(public_path('image/' . $oldImage))) {
-                unlink(public_path('image/' . $oldImage));
+            if (file_exists(public_path('images/products/' . $oldImage))) {
+                unlink(public_path('images/products/' . $oldImage));
             }
 
             $file = $request->file('image');
@@ -110,7 +110,7 @@ class ProductController extends Controller
             $payload = Arr::prepend($payload, $request->image, 'image');
             $product->update($payload);
         } else {
-             $product->update($payload);
+            $product->update($payload);
         }
         return redirect()->back();
     }
@@ -125,8 +125,8 @@ class ProductController extends Controller
     {
         $product = Product::query()->find($id);
         $oldImage = $product->image;
-        if (file_exists(public_path('image/' . $oldImage))) {
-            unlink(public_path('image/' . $oldImage));
+        if (file_exists(public_path('images/products/' . $oldImage))) {
+            unlink(public_path('images/products/' . $oldImage));
         }
         $product->delete();
         return redirect()->back();

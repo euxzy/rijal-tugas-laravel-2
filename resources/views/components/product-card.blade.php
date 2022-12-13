@@ -1,9 +1,9 @@
 <div class="w-80 bg-white p-4 rounded-lg shadow-lg">
   <div class="w-full h-64 overflow-hidden rounded-lg flex items-center justify-center bg-slate-200 mb-4">
-    @if (!file_exists(public_path('image/' . $product->image)))
+    @if (!file_exists(public_path('images/products/' . $product->image)))
       <h1 class="text-center font-semibold text-5xl text-gray-700">{{ $product->name }}</h1>
     @else
-      <img src="{{ asset('image/'. $product->image) }}" alt="{{ $product->name }}" class="w-full scale-150">
+      <img src="{{ asset('images/products/'. $product->image) }}" alt="{{ $product->name }}" class="w-full scale-150">
     @endif
   </div>
   <div class="flex justify-between items-center mb-3">
