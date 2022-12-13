@@ -127,6 +127,6 @@ class ArticleController extends Controller
             unlink($oldImage);
         }
         $article->delete();
-        return redirect()->back();
+        return redirect()->route('post.list');
     }
 }
