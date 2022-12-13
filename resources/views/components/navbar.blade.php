@@ -8,5 +8,9 @@
         <li><a href="{{ route('product.list') }}">Produk</a></li>
       </ul>
     </div>
+    <ul class="flex gap-10 font-medium">
+      <li><a href="{{ route('post.create') }}">Tambah Post</a></li>
+      <li><a href="{{ route('product.add') }}">Tambah Produk</a></li>
+    </ul>
   </nav>
 </section>
