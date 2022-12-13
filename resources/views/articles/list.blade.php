@@ -2,10 +2,11 @@
 @section('title', 'Semua Post')
 @section('content')
 @include('components.navbar')
-  <section>
-    @foreach ($articles as $article)
-      <h1>{{ $article->title }}</h1>
-      <a href="{{ route('post.show', $article->slug) }}">Detail</a>
-    @endforeach
+  <section class="container my-28">
+    <div class="flex justify-between">
+      @foreach ($articles as $article)
+      @include('components.post-card', $article)
+      @endforeach
+    </div>
   </section>
 @endsection
