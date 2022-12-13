@@ -10,6 +10,10 @@
     <p class="mb-8 w-full text-right">{{ $article->updated_at }}</p>
     <p class="text-gray-900">{!! $article->content !!}</p>
 
-    <a href="{{ route('post.list') }}" class="inline-block mt-20 bg-green-600 text-white px-4 py-2 rounded-lg font-bold">Lihat post lain</a>
+    <div class="mt-20 flex gap-5">
+      <a href="{{ route('post.list') }}" class="inline-block bg-green-600 text-white px-4 py-2 rounded-lg font-bold">Lihat post lain</a>
+      <a href="{{ route('post.edit', $article->id) }}" class="inline-block bg-blue-400 text-white px-4 py-2 rounded-lg font-bold">Edit Post</a>
+      <a href="{{ route('post.delete', $article->id) }}" class="inline-block bg-red-400 text-white px-4 py-2 rounded-lg font-bold">Hapus Post</a>
+    </div>
   </section>
 @endsection

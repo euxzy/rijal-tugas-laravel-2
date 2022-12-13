@@ -3,7 +3,7 @@
     <img src="{{ asset('images/posts/' . $article->image) }}" alt="{{ $article->title }}" class="w-full">
   </div>
   <div class="flex-1">
-    <a href="{{ route('post.show', $article->slug) }}" class="font-medium text-xl mb-4">{{ $article->title }}</a>
-    <p>{{ strip_tags(substr($article->content, 0, 150), '...') }}</p>
+    <a href="{{ route('post.show', $article->slug) }}" class="inline-block font-medium text-xl mb-4">{{ $article->title }}</a>
+    <p class="text-sm">{{ strip_tags(substr($article->content, 0, 100), '...') }}</p>
   </div>
 </div>

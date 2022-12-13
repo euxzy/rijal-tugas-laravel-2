@@ -1,7 +1,8 @@
 @extends('templates.base')
 @section('title', 'Edit Produk')
 @section('content')
-  <section class="max-w-[700px] mx-auto">
+@include('components.navbar')
+  <section class="max-w-[700px] my-16 mx-auto">
     <a href="{{ route('product.list') }}" class="mt-12 inline-block mb-4 bg-green-600 text-white px-4 py-2 rounded-lg">Kembali Ke Daftar Produk</a>
     <form action="{{ route('product.update', $product->id) }}" method="post" enctype="multipart/form-data">
       @method('put')

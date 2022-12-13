@@ -1,5 +1,5 @@
-<div class="w-96 bg-white p-4 rounded-lg shadow-lg">
-  <div class="w-full h-72 overflow-hidden rounded-lg flex items-center justify-center bg-slate-200 mb-4">
+<div class="w-80 bg-white p-4 rounded-lg shadow-lg">
+  <div class="w-full h-64 overflow-hidden rounded-lg flex items-center justify-center bg-slate-200 mb-4">
     @if (!file_exists(public_path('image/' . $product->image)))
       <h1 class="text-center font-semibold text-5xl text-gray-700">{{ $product->name }}</h1>
     @else
@@ -16,7 +16,7 @@
       <p class="font-medium text-gray-800 text-right">{{ $product->stock }}</p>
     </div>
   </div>
-  <div class="mb-4 text-gray-900">{{ $product->description }}</div>
+  <p class="mb-4 text-gray-900">{{ $product->description }}</p>
   <div class="flex gap-4">
     <a href="{{ route('product.edit', $product->id) }}" class="inline-block mb-4 bg-green-600 text-white px-4 py-2 rounded-lg">Edit</a>
     <a href="{{ route('product.delete', $product->id) }}" class="inline-block mb-4 bg-red-600 text-white px-4 py-2 rounded-lg">Hapus</a>
